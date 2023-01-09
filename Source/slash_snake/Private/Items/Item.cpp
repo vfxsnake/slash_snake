@@ -17,6 +17,11 @@ void AItem::BeginPlay()
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("Begin Play called!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"));
 	
+	// outputin messages to engine screan
+	if (GEngine)  // chekc if the pointer is valid GEngine returns a pointer to the instance of the engine. 
+	{
+		GEngine->AddOnScreenDebugMessage(1, 60.f, FColor::Cyan, FString("c++ item log on screan message!!<<<<<<<<<<<<<<<<<<<<<<<<"));
+	}
 }
 
 // Called every frame
