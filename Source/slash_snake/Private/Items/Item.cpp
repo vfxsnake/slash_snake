@@ -2,6 +2,8 @@
 
 
 #include "Items/Item.h"
+#include "DrawDebugHelpers.h"   // for drawing shapes for debugging.
+#include "slash_snake/slash_snake.h" // include slash snake for additional macors and extra global functions.
 
 // Sets default values
 AItem::AItem()
@@ -21,6 +23,7 @@ void AItem::BeginPlay()
 	if (GEngine)  // chekc if the pointer is valid GEngine returns a pointer to the instance of the engine. 
 	{
 		GEngine->AddOnScreenDebugMessage(1, 60.f, FColor::Cyan, FString("c++ item log on screan message!!<<<<<<<<<<<<<<<<<<<<<<<<"));
+		DRAW_SPEHRE(GetActorLocation());  // no need of the semicolon as the macro is defined with one
 	}
 }
 
@@ -28,6 +31,13 @@ void AItem::BeginPlay()
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	// formating strings * operator is overloaded in FStrings to return a constant char array (c string)
+	
+	FString instance_name = this->GetName();
+	GEngine->AddOnScreenDebugMessage(2, 1.0f, FColor::Cyan, *instance_name);
+	
+	FString delta_time_str = FString::Printf(TEXT("delta time: %f"), DeltaTime);
+	GEngine->AddOnScreenDebugMessage(3, 1.0f, FColor::Red, delta_time_str);
+	
 }
 
